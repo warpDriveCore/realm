@@ -63,7 +63,7 @@ server.register({
     server.start((err) => {
 
         if (err) {
-            throw err;
+            throw err; // something bad happened starting the server
         }
 
         server.log('info', 'Server running at: ' + server.info.uri);
