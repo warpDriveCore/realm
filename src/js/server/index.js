@@ -65,6 +65,7 @@ server.register({
         if (err) {
             throw err;
         }
+
         server.log('info', 'Server running at: ' + server.info.uri);
     });
 });
