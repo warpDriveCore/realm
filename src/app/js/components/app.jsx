@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import Pool from './Pool/Pool';
 
 class App extends PureComponent {
   constructor(props) {
@@ -11,6 +12,7 @@ class App extends PureComponent {
     return (
       <main className="ui-wrapper">
         Hi ;)
+        <Pool />
       </main>
     );
   }

@@ -22,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
@@ -47,6 +47,9 @@ module.exports = {
       },
       { test: /\.(png|jpg|gif|svg)$/, loader: 'url-loader?limit=8192' },
     ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new CleanWebpackPlugin('public/', {

@@ -1,9 +1,11 @@
+/* eslint-disable */
 'use strict';
 
 const Hapi = require('hapi');
 const path = require('path');
-
-const server=Hapi.server({
+const inert = require('inert')
+const axios = require('axios');
+const server = Hapi.server({
   host:'localhost',
   port: 3001
 });
@@ -11,15 +13,14 @@ const server=Hapi.server({
 
 const start = async () => {
 
-  await server.register(require('inert'));
+  await server.register(inert);
 
   server.route({
     method: 'GET',
     path: '/',
-    handler: function (request, h) {
-      return h.file(path.join(__dirname, '../../public/index.html'));
-    }
+    handler: (request, h) => h.file(path.join(__dirname, '../../public/index.html'))
   });
+
   server.route({
     method: 'GET',
     path: '/{param*}',
@@ -28,6 +29,20 @@ const start = async () => {
         path: 'public',
         listing: true
       }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/listing',
+    handler: async (request, h) => {
+      return axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200', {
+        headers: {
+          'X-CMC_PRO_API_KEY': '8a9cd3d5-b37a-42a8-8041-d20176627896',
+        },
+      })
+        .then(({ data: { data } }) => h.response(data))
+        .catch(err => console.error(err));
     }
   });
 
