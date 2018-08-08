@@ -5,11 +5,12 @@ const Hapi = require('hapi');
 const path = require('path');
 const inert = require('inert')
 const axios = require('axios');
+
+const hive = require('./hiveProxy.service.js');
 const server = Hapi.server({
-  host:'localhost',
+  host: 'localhost',
   port: 3001
 });
-
 
 const start = async () => {
 
@@ -43,6 +44,23 @@ const start = async () => {
       })
         .then(({ data: { data } }) => h.response(data))
         .catch(err => console.error(err));
+    }
+  });  
+  
+  server.route({
+    method: 'GET',
+    path: '/farms',
+    handler: async (request, h) => {
+      return h.response(hive.saveToken());
+    }
+  });
+
+  server.route({
+    method: 'POST',
+    path: '/login',
+    handler: async (request, h) => {
+      const { tFACode } = request.payload;
+      return hive.getToken(tFACode, h);
     }
   });
 

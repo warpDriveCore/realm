@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export function getMinerDashBoard() {
   const baseUrl = 'https://api.ethermine.org';
   const miner = '0x94dC448DDABb9A42F3f42dFAcD13d7110Db36867';
