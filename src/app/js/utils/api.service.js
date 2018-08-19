@@ -2,13 +2,11 @@ import axios from 'axios';
 
 
 export function getMinerDashBoard() {
-  const baseUrl = 'https://api.ethermine.org';
-  const miner = '0x94dC448DDABb9A42F3f42dFAcD13d7110Db36867';
+  return axios.get('http://localhost:3001/dashboard')
+}
 
-  axios.get(`${baseUrl}/miner/${miner}/dashboard`)
-    .then(({ data: { data } }) => {
-      console.log(data);
-    });
+export function getFarms() {
+  return axios.get('http://localhost:3001/farms')
 }
 
 export function getCryptoListing() {
@@ -18,3 +16,12 @@ export function getCryptoListing() {
       console.log(data);
     });
 }
+
+export function getTokeng(code) {
+  const url = 'http://localhost:3001/login';
+  axios.post(url, { twoFACode: code })
+    .then(({ data }) => {
+      console.log(data);
+    });
+}
+

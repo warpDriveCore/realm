@@ -50,8 +50,16 @@ const start = async () => {
   server.route({
     method: 'GET',
     path: '/farms',
-    handler: async (request, h) => {
-      return h.response(hive.saveToken());
+    handler: async () => {
+      return hive.getFarms();
+    }
+  });
+  
+  server.route({
+    method: 'GET',
+    path: '/dashboard',
+    handler: async () => {
+      return hive.getMinerDashBoard();
     }
   });
 
@@ -59,14 +67,18 @@ const start = async () => {
     method: 'POST',
     path: '/login',
     handler: async (request, h) => {
-      const { tFACode } = request.payload;
-      return hive.getToken(tFACode, h);
+      const { twoFACode } = request.payload;
+      
+      return hive.getToken(twoFACode)
     }
   });
 
   await server.start();
 
   console.log('Server running at:', server.info.uri);
+
+  hive.readToken();
+  hive.refreshToken();
 };
 
 start();

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import Pool from './Pool/Pool';
+import Dashboard from './Dashboard';
+import Farm from './Farm';
 
 class App extends PureComponent {
   constructor(props) {
@@ -11,8 +12,10 @@ class App extends PureComponent {
   render() {
     return (
       <main className="ui-wrapper">
-        Hi ;)
-        <Pool />
+        <div className="ui-wrapper__content">
+          <Dashboard />
+          <Farm />
+        </div>
       </main>
     );
   }

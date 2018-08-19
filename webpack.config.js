@@ -67,7 +67,7 @@ module.exports = {
       },
     }),
     new CopyWebpackPlugin([
-      { from: path.resolve(__dirname, 'src/app/img'), to: path.resolve(__dirname, 'public/img') },
+      { from: path.resolve(__dirname, 'src/app/assets'), to: path.resolve(__dirname, 'public/assets') },
       { from: path.resolve(__dirname, 'src/app/css/fontAwesome'), to: path.resolve(__dirname, 'public') },
     ]),
     new HtmlWebpackPlugin({
