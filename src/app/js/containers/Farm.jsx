@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { getFarms } from '../utils/api.service';
 import Rig from '../components/Rig';
+import PieChart from '../components/PieChart';
 
 class Farm extends PureComponent {
   constructor(props) {
@@ -34,6 +35,7 @@ class Farm extends PureComponent {
 
     return (
       <section className="ui-block">
+        <PieChart />
         {loading ? (
           <span>Loading ...</span>
         ) : (
