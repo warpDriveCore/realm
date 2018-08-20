@@ -38,15 +38,15 @@ class Arc extends Component {
     }
 
     hover = () => {
-        this.setState({
-            color: this.state.color.saturate(2)
-        });
+        // this.setState({
+        //     color: this.state.color.saturate(2)
+        // });
     };
 
     unhover = () => {
-        this.setState({
-            color: this.state.origCol
-        });
+        // this.setState({
+        //     color: this.state.origCol
+        // });
     };
 
     render() {
