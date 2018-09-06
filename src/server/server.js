@@ -7,6 +7,7 @@ const inert = require('inert')
 const axios = require('axios');
 
 const hive = require('./hiveProxy.service.js');
+const portfolio = require('./portfolio.json');
 const server = Hapi.server({
   host: 'localhost',
   port: 3001
@@ -37,7 +38,7 @@ const start = async () => {
     method: 'GET',
     path: '/listing',
     handler: async (request, h) => {
-      return axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=200', {
+      return axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=600', {
         headers: {
           'X-CMC_PRO_API_KEY': '8a9cd3d5-b37a-42a8-8041-d20176627896',
         },
@@ -60,6 +61,14 @@ const start = async () => {
     path: '/dashboard',
     handler: async () => {
       return hive.getMinerDashBoard();
+    }
+  });
+  
+  server.route({
+    method: 'GET',
+    path: '/portfolio',
+    handler: async (request, h) => {
+      return h.response(portfolio);
     }
   });
 

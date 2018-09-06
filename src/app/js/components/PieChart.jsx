@@ -1,57 +1,42 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import * as d3 from "d3";
 
-class Arc extends Component {
+class Arc extends PureComponent {
     arc = d3
-        .arc()
-        .innerRadius(80)
-        .outerRadius(150)
-        .cornerRadius(4);
+      .arc()
+      .innerRadius(80)
+      .outerRadius(150)
+      .cornerRadius(4);
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            color: props.color,
-            origCol: props.color,
-            d: props.d,
-            pathD: this.arc(props.d)
-        };
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.setState({
-            color: newProps.color
-        });
-
-        d3
-            .select(this.refs.elem)
-            .transition()
-            .duration(80)
-            .attr("d", this.arc(newProps.d))
-            .on("end", () =>
-                this.setState({
-                    d: newProps.d
-                    //pathD: this.arc(newProps.d)
-                })
-            );
-    }
+    arcOver = d3
+      .arc()
+      .innerRadius(70)
+      .outerRadius(160)
+      .cornerRadius(4);
 
     hover = () => {
-        // this.setState({
-        //     color: this.state.color.saturate(2)
-        // });
+      const { d } = this.props; 
+
+      d3
+        .select(this.refs.elem)
+        .transition()
+        .duration(300)
+        .attr("d", this.arcOver(d));
     };
 
     unhover = () => {
-        // this.setState({
-        //     color: this.state.origCol
-        // });
+      const { d } = this.props; 
+
+      d3
+        .select(this.refs.elem)
+        .transition()
+        .duration(300)
+        .attr("d", this.arc(d));
     };
 
     render() {
-        const { color, pathD } = this.state;
-
+        const { color, d } = this.props;
+        const pathD = this.arc(d);
         return (
             <path
                 d={pathD}
@@ -66,37 +51,20 @@ class Arc extends Component {
     }
 }
 
-class Piechart extends Component {
+class Piechart extends PureComponent {
     pie = d3
-        .pie()
-        .value(d => d.amount)
-        .sortValues(d => d.tag)
-        .padAngle(0.005);
+      .pie()
+      .value(d => d.amount)
+      .sortValues(d => d.amount)
+      .padAngle(0.005);
 
     render() {
-      var data = [
-        {
-          amount:34
-        },
-        {
-          amount:45
-        },
-        {
-          amount:12
-        },
-        {
-          amount:100
-        },
-        {
-          amount:500
-        },
-    ];
-
+      const { portfolio } = this.props;
         return (
           <svg width="400" height="400">
             <g transform={'translate(200, 200)'}>
-                {this.pie(data).map((d, i) => (
-                    <Arc d={d} color={'#fff'} key={'dummy'} />
+                {this.pie(portfolio).map((item) => (
+                    <Arc d={item} color={item.data.color} key={item.data.symbol} />
                 ))}
             </g>
             </svg>

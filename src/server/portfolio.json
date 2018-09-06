@@ -1,0 +1,88 @@
+{
+  "coins": [
+    {
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "holdings": 4.4,
+      "color": "#6876E6"
+    },
+    {
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "holdings": 0.11,
+      "color": "#FF9900"
+    },
+    {
+      "symbol": "EOS",
+      "name": "EOS",
+      "holdings": 51,
+      "color": "#99A4EA"
+    },
+    {
+      "symbol": "LTC",
+      "name": "Litecoin",
+      "holdings": 1,
+      "color": "#AEAEAE"
+    },
+    {
+      "symbol": "NPXS",
+      "name": "Pundi X",
+      "holdings": 26000,
+      "color": "#F6B048"
+    },
+    {
+      "symbol": "DGB",
+      "name": "DigiByte",
+      "holdings": 1595,
+      "color": "#096BC7"
+    },
+    {
+      "symbol": "CVC",
+      "name": "Civic",
+      "holdings": 150,
+      "color": "#3EB13E"
+    },
+    {
+      "symbol": "NMR",
+      "name": "Numeraire",
+      "holdings": 2.56,
+      "color": "#AEAEAE"
+    },
+    {
+      "symbol": "OMG",
+      "name": "OmiseGO",
+      "holdings": 2.51,
+      "color": "#3A79FF"
+    },
+    {
+      "symbol": "SNT",
+      "name": "Status",
+      "holdings": 270,
+      "color": "#5D69BD"
+    },
+    {
+      "symbol": "GNT",
+      "name": "Golem",
+      "holdings": 60,
+      "color": "#01D3E0"
+    },
+    {
+      "symbol": "DNT",
+      "name": "District0x",
+      "holdings": 362,
+      "color": "#EEAF4A"
+    },
+    {
+      "symbol": "RLC",
+      "name": "IExec RLC",
+      "holdings": 15.7,
+      "color": "#E0B91B"
+    },
+    {
+      "symbol": "SALT",
+      "name": "SALT",
+      "holdings": 11.5,
+      "color": "#18CAD0"
+    }
+  ]
+}

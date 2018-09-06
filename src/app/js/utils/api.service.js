@@ -1,20 +1,21 @@
 import axios from 'axios';
 
-
 export function getMinerDashBoard() {
-  return axios.get('http://localhost:3001/dashboard')
+  return axios.get('http://localhost:3001/dashboard');
 }
 
 export function getFarms() {
-  return axios.get('http://localhost:3001/farms')
+  return axios.get('http://localhost:3001/farms');
 }
 
 export function getCryptoListing() {
   const url = 'http://localhost:3001/listing';
-  axios.get(url)
-    .then(({ data }) => {
-      console.log(data);
-    });
+  return axios.get(url);
+}
+
+export function getPortfolio() {
+  const url = 'http://localhost:3001/portfolio';
+  return axios.get(url);
 }
 
 export function getTokeng(code) {
