@@ -14,8 +14,8 @@ class Portfolio extends PureComponent {
       
       return {
         ...coin,
-        valueUsd: price,
-        amount: holdings * price,
+        price: price > 1 ? price.toFixed(1) : price.toFixed(4),
+        valueUsd: (holdings * price).toFixed(1),
       };
     });
   }
@@ -23,14 +23,37 @@ class Portfolio extends PureComponent {
   render() {
     const { portfolio: { coins }, marketcup: { listing, isLoading } } = this.props;
 
-    const data = this.mapData(coins, listing);
-
     return (
-      <section className="ui-block ui-portfolio">
+      <section className="ui-block ui-block_blue ui-portfolio">
+        <h2 className='ui-portfolio__header'>
+          <img className='ui-portfolio__headerLogo' src='/assets/roket.png'></img>
+          <span>Portfolio</span></h2>
         {isLoading ? (
           <span>Loading ...</span>
         ) : (
-          <PieChart portfolio={data} />
+          <div className='ui-portfolio__content'>
+            <div className='ui-portfolio__contentChart'>
+              <PieChart coins={coins} />
+            </div>
+            <ul className='ui-portfolio__contentCoins'>
+              <div className='ui-coin ui-coin_header'>
+                <span class='ui-coin__symbol'>abbr</span>
+                  <span class='ui-coin__name'>name</span>
+                  <span class='ui-coin__holdings'>holdings</span>
+                  <span class='ui-coin__value'>value</span>
+                  <span class='ui-coin__price'>price</span>
+              </div>
+              {coins.map((({ symbol, name, holdings, valueUsd, price }) => (
+                <li class='ui-coin'>
+                  <span class='ui-coin__symbol'>{symbol}</span>
+                  <span class='ui-coin__name'>{name}</span>
+                  <span class='ui-coin__holdings'>{holdings}</span>
+                  <span class='ui-coin__value'>{valueUsd}</span>
+                  <span class='ui-coin__price'>{price}</span>
+                </li>
+              )))}
+            </ul>
+          </div>
         )
         }
       </section>

@@ -2,13 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../css/main.scss';
+import './utils/icons';
 import App from './containers/App';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
-
 
 import reducer from './utils/reducer';
 

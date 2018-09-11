@@ -7,8 +7,13 @@ class Farm extends PureComponent {
 
     return (
       <section className="ui-block ui-block_blue ui-farm">
-        <h2 className='ui-farm__header'><img className='ui-farm__headerLogo' src='/assets/hiveLogo.png'></img>HiveOS</h2>
-        {!isLoading && (rigs.map(rig => <Rig data={rig} />))}
+        <h2 className='ui-farm__header'>
+          <img className='ui-farm__headerLogo' src='/assets/hiveLogo.png'></img>
+          <span>HiveOS</span>
+        </h2>
+        <div className='ui-farm__content'>
+          {!isLoading && (rigs.map(rig => <Rig data={rig} />))}
+        </div>
         <div className="ui-farm__backLogo"/>
       </section>
     )

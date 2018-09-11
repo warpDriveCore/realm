@@ -10,6 +10,7 @@ const fs = require('fs');
 const marketcup = require(path.join(__dirname, '../../user/marketcup.json'));
 
 const hive = require('./hiveProxy.service.js');
+const helpers = require('./helpers');
 const portfolio = require('./portfolio.json');
 const server = Hapi.server({
   host: 'localhost',
@@ -79,7 +80,7 @@ const start = async () => {
     method: 'GET',
     path: '/portfolio',
     handler: async (request, h) => {
-      return h.response(portfolio);
+      return h.response(helpers.mapPortfolio(portfolio.coins, marketcup.data));
     }
   });
 

@@ -85,22 +85,26 @@ function mapFarmsData(data) {
   return data.map(miner => {
     const gpuStats = miner.gpu_stats;
     const minerStats = miner.miners_stats.hashrates[0];
-    const { hashes } = minerStats;
-    const stats = gpuStats.map((gpu, index) => ({
+    const { hashes, temps } = minerStats;
+    const hottestTemp = temps.reduce((acc, value) => (acc < value ? acc = value : acc), 0);
+    let stats = gpuStats.map((gpu, index) => ({
       ...gpu,
       hash: (hashes[index]/1000).toFixed(1),
+      isHottest: temps[index] === hottestTemp,
     }));
+
     const minerSummary = miner.miners_summary;
     const { hash } = minerSummary.hashrates.pop();
     const powerDraw = miner.stats.power_draw;
     return ({
-    name: miner.name,
-    units: miner.units_count,
-    active: miner.active,
-    hashrate: (hash/1000).toFixed(1),
-    powerDraw,
-    gpus: stats
-  })});
+      name: miner.name,
+      units: miner.units_count,
+      active: miner.active,
+      hashrate: (hash/1000).toFixed(1),
+      powerDraw,
+      gpus: stats
+    })
+  });
 }
 
 module.exports = {

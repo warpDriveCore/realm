@@ -61,14 +61,14 @@ export default function reducer(state = initialState, action) {
     case GET_PORTFOLIO_SUCCESS: return { 
       ...state, 
       portfolio: { 
-        coins : action.payload.data.coins, 
+        coins : action.payload.data, 
         isLoading: false 
       }
     }
     case GET_PORTFOLIO_FAIL: return {
       ...state, 
       portfolio: { 
-        coins : action.payload.data.coins, 
+        coins : [], 
         isLoading: false,
         failedToLoad: true 
       }
