@@ -6,6 +6,9 @@ const path = require('path');
 const inert = require('inert')
 const axios = require('axios');
 
+const fs = require('fs');
+const marketcup = require(path.join(__dirname, '../../user/marketcup.json'));
+
 const hive = require('./hiveProxy.service.js');
 const portfolio = require('./portfolio.json');
 const server = Hapi.server({
@@ -38,13 +41,21 @@ const start = async () => {
     method: 'GET',
     path: '/listing',
     handler: async (request, h) => {
-      return axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=600', {
-        headers: {
-          'X-CMC_PRO_API_KEY': '8a9cd3d5-b37a-42a8-8041-d20176627896',
-        },
-      })
-        .then(({ data: { data } }) => h.response(data))
-        .catch(err => console.error(err));
+      // return axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?limit=600', {
+      //   headers: {
+      //     'X-CMC_PRO_API_KEY': '93d2fa8b-dfe9-4249-a0ef-2c4145239f57',
+      //   },
+      // })
+      //   .then(({ data: { data } }) => {
+          // fs.writeFile(path.resolve(__dirname, '../../user/marketcup.json'), JSON.stringify({ data: data }), (err) => {  
+          //   if (err) throw err;
+          // });
+          
+          // return h.response(data)})
+         
+        // .catch(err => console.error(err));
+
+        return h.response(marketcup.data);
     }
   });  
   

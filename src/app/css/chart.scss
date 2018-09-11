@@ -1,0 +1,13 @@
+.domain {
+  stroke: #fff;
+}
+
+.tick {
+  & line {
+    stroke: #fff;
+  }
+
+  & text {
+    fill: #fff;
+  }
+}

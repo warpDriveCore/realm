@@ -1,32 +1,16 @@
 import React, { PureComponent } from 'react';
-import { getMinerDashBoard, getCryptoListing, getTokeng } from '../utils/api.service';
 import Worker from '../components/Worker';
+import Chart from '../components/Chart';
 
 class Dashboard extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      workers: []
-    };
-  }
-
-  componentDidMount() {
-    getMinerDashBoard()
-      .then(({ data }) => {
-        const { workers } = data;
-        this.setState({ workers });
-      })
-      .catch(err => console.log(err));
-  }
-
   render() {
-    const { workers } = this.state;
-
+    const { dashboard: { data: { workers, statistics }, isLoading, failedToLoad }} = this.props;
     return (
-      <section className="ui-block">
+      <section className="ui-block ui-block_blue ui-dashboard">
           {workers.map(worker => (
             <Worker data={worker} />
           ))}
+          <Chart statistics={statistics} />
       </section>
     );
   }

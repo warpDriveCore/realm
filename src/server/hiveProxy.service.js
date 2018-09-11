@@ -45,8 +45,6 @@ function saveToken(token) {
 
 function getFarms() {
   const token = getToken();
-  console.log('authToken getFarms', authToken);
-  console.log('token getFarms', token);
 
   return new Promise((resolve, reject) => {
     axios.get(`${hiveBaseUri}/farms/6340/workers`, {
@@ -84,15 +82,25 @@ function getMinerDashBoard() {
 }
 
 function mapFarmsData(data) {
-  return data.map(miner => ({
+  return data.map(miner => {
+    const gpuStats = miner.gpu_stats;
+    const minerStats = miner.miners_stats.hashrates[0];
+    const { hashes } = minerStats;
+    const stats = gpuStats.map((gpu, index) => ({
+      ...gpu,
+      hash: (hashes[index]/1000).toFixed(1),
+    }));
+    const minerSummary = miner.miners_summary;
+    const { hash } = minerSummary.hashrates.pop();
+    const powerDraw = miner.stats.power_draw;
+    return ({
     name: miner.name,
     units: miner.units_count,
     active: miner.active,
-    stats: miner.stats,
-    minerStats: miner.miners_stats.hashrates[0],
-    minerSummary: miner.miners_summary,
-    gpuStats: miner.gpu_stats
-  }));
+    hashrate: (hash/1000).toFixed(1),
+    powerDraw,
+    gpus: stats
+  })});
 }
 
 module.exports = {
