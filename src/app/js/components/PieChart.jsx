@@ -21,23 +21,27 @@ class Arc extends PureComponent {
       .cornerRadius(4);
 
     hover = () => {
-      const { d } = this.props; 
-
+      const { d, hover } = this.props; 
+      const { symbol } = d.data;
       d3
         .select(this.refs.elem)
         .transition()
         .duration(300)
         .attr("d", this.arcOver(d));
+
+      hover(symbol);
     };
 
     unhover = () => {
-      const { d } = this.props; 
+      const { d, hover } = this.props; 
 
       d3
         .select(this.refs.elem)
         .transition()
         .duration(300)
         .attr("d", this.arc(d));
+
+      hover(null);
     }
     
     componentDidMount() {
@@ -91,7 +95,7 @@ class Piechart extends PureComponent {
       .padAngle(0.005);
 
     render() {
-      let { coins } = this.props;
+      let { coins, hover } = this.props;
 
       return (
         <svg ref='svg' width="340" height="340">
@@ -99,11 +103,11 @@ class Piechart extends PureComponent {
           <g transform={'translate(170, 170)'}>
               {coins.length ? (
                 this.pie(coins).map((item) => (
-                  <Arc d={item} color={item.data.color} key={item.data.symbol} animate={true} />
+                  <Arc d={item} color={item.data.color} key={item.data.symbol} animate={true} hover={hover} />
                 ))
               ) : (
                 this.pie(emptyPieChartData).map((item) => (
-                  <Arc d={item} color={item.data.color} key={item.data.symbol} animate={false} />
+                  <Arc d={item} color={item.data.color} key={item.data.symbol} animate={false} hover={() => {}} />
                 ))
               )}
           </g>

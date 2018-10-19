@@ -7,7 +7,7 @@
   &__header {
     display: flex;
     align-items: center;
-    margin: 8px 16px;
+    margin: 16px;
     font-size: 16px;
 
     &Logo {
@@ -25,6 +25,7 @@
     // flex-direction: column;
 
     &Chart {
+      position: relative;
       margin: 0 16px;
     }
 
@@ -38,12 +39,37 @@
   }
 }
 
+.ui-chartInfo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  &__symbol {
+    font-size: 18px;
+    font-weight: 500;
+
+  }
+
+  &__value {
+    font-size: 16px;
+  }
+
+  &__icon {
+    margin-right: 4px;
+  }
+}
+
 .ui-coin {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;
   padding: 0 8px;
+  transition: all .3s ease-out;
 
   &_header {
     padding: 4px 8px;
@@ -51,6 +77,11 @@
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     text-transform: capitalize;
+    font-weight: 600;
+  }
+
+  &_highlighted {
+    font-size: 14px;
     font-weight: 600;
   }
 

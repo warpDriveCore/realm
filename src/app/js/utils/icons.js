@@ -4,6 +4,7 @@ import {
   faBolt,
   faFire,
   faChargingStation,
+  faDollarSign,
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -11,4 +12,5 @@ library.add(
   faBolt,
   faChargingStation,
   faFire,
+  faDollarSign,
 );
