@@ -11,3 +11,60 @@
     fill: #fff;
   }
 }
+
+.ui-chart {
+
+  &__axis{
+    &_right {
+      opacity: 0.3;
+    }
+  }
+
+  &__hashLine {
+    fill: none;
+    stroke-width: 2px;
+
+    &_current {
+      stroke: tomato;
+    }
+
+    &_reported {
+      stroke: lawngreen;
+    }
+
+  }
+
+  &__bullet {
+    fill: tomato;
+    transition: all .1s cubic-bezier(1.000, 0.270, 0.800, 0.685);
+
+    &_highlighted {
+      r: 5;
+    }
+  }
+
+  &__line {
+    fill: none;
+    stroke: #fff;
+    opacity: 0;
+    transition: all .2s cubic-bezier(1.000, 0.270, 0.800, 0.685);
+
+    &_highlighted {
+      opacity: 0.3;
+    }
+  }
+
+  &__hoverSection {
+    fill: tomato;
+    stroke: none;
+    opacity: 0;
+
+    &_highlighted {
+      //opacity: 0.3;
+    }
+  }
+
+  &__tooltip {
+
+  }
+}

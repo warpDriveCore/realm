@@ -24,7 +24,7 @@ class Arc extends PureComponent {
       const { d, hover } = this.props; 
       const { symbol } = d.data;
       d3
-        .select(this.refs.elem)
+        .select(this.refs.a)
         .transition()
         .duration(300)
         .attr("d", this.arcOver(d));
@@ -36,19 +36,19 @@ class Arc extends PureComponent {
       const { d, hover } = this.props; 
 
       d3
-        .select(this.refs.elem)
+        .select(this.refs.a)
         .transition()
         .duration(300)
         .attr("d", this.arc(d));
 
       hover(null);
-    }
+    };
     
     componentDidMount() {
        const { d, animate } = this.props; 
        if(animate) {
         d3
-        .select(this.refs.elem)
+        .select(this.refs.a)
         .transition()
         .duration(300)
         .attr("d", this.arc(d));
@@ -67,7 +67,7 @@ class Arc extends PureComponent {
                 }}
                 onMouseOver={this.hover}
                 onMouseOut={this.unhover}
-                ref="elem"
+                ref="a"
             />
         );
     }

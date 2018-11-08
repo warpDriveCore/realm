@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classNames';
+
 
 const ChartInfo = ({ coin: { symbol, valueUsd }, highlighted }) => (
   <div className='ui-chartInfo'>
@@ -11,13 +11,13 @@ const ChartInfo = ({ coin: { symbol, valueUsd }, highlighted }) => (
       {valueUsd}
     </span>
   </div>
-)
-
-export default ChartInfo;
+);
 
 ChartInfo.PropTypes = {
-  coin: PropTypes.shape({
-    symbol: PropTypes.string.isRequired,
-    valueUsd: PropTypes.number.isRequired,
-  }),
-}
+	coin: PropTypes.shape({
+		symbol: PropTypes.string.isRequired,
+		valueUsd: PropTypes.number.isRequired,
+	}),
+};
+
+export default ChartInfo;

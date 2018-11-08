@@ -3,6 +3,7 @@
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 1;
+  position: relative;
 
   &__header {
     display: flex;
@@ -71,13 +72,17 @@
   padding: 0 8px;
   transition: all .3s ease-out;
 
-  &_header {
+  &_header, &_footer {
     padding: 4px 8px;
     background-color: rgba(255, 255, 255, 0.3);
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     text-transform: capitalize;
     font-weight: 600;
+  }
+
+  &_footer {
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    justify-content: flex-start;
   }
 
   &_highlighted {
@@ -110,5 +115,27 @@
   &__price {
     width: 60px;
     text-align: right;
+  }
+
+  &__total {
+    margin-left: auto;
+  }
+
+  &__editBtn {
+    padding: 4px 8px;
+    color: rgba($color-text, 0.8);
+    background-color: transparent;
+    border: 1px solid rgba($color-text, 0.4);
+    border-radius: 2px;
+    cursor: pointer;
+
+    &:first-child {
+      margin-right: 4px;
+    }
+
+    &:hover {
+      color: $color-text;
+      border-color: $color-text;
+    }
   }
 }
