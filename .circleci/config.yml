@@ -19,7 +19,7 @@ jobs:
       # add ssh keys
       - add_ssh_keys:
           fingerprints:
-            - "b0:22:b6:a7:59:6e:38:68:7b:8d:76:cf:0e:bf:db:40"
+            - "28:bc:11:0c:3c:e4:d6:fb:b7:cc:97:9e:80:c0:0f:73"
 
       # prepare remote directories for deployment
       - run: 
