@@ -19,7 +19,7 @@ jobs:
       # add ssh keys
       - add_ssh_keys:
           fingerprints:
-            - "dd:43:02:18:87:aa:70:be:a6:f6:80:33:68:ca:3b:b3"
+            - "b0:22:b6:a7:59:6e:38:68:7b:8d:76:cf:0e:bf:db:40"
       
       # setup ssh-agent
       - run: which ssh-agent
