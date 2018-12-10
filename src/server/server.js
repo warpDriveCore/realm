@@ -1,12 +1,14 @@
 /* eslint-disable */
 'use strict';
 
+const fs = require('fs');
+const dotenv = require('dotenv').config();
+
 const Hapi = require('hapi');
 const path = require('path');
 const inert = require('inert')
 const axios = require('axios');
 
-const fs = require('fs');
 const marketcup = require(path.join(__dirname, '../../user/marketcup.json'));
 
 const hive = require('./hiveProxy.service.js');

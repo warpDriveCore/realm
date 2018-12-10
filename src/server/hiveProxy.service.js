@@ -5,7 +5,6 @@ const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
 const tokenStore = require(path.join(__dirname, '../../user/hiveToken.json'));
-const userData = require(path.join(__dirname, '../../user/credentials.json'));
 
 const hiveBaseUri = 'https://api2.hiveos.farm/api/v2';
 
@@ -37,7 +36,6 @@ function refreshToken() {
 
 function saveToken(token) {
   authToken = token;
-  console.log('authToken', authToken);
   fs.writeFile(path.resolve(__dirname, '../../user/hiveToken.json'), JSON.stringify({ token: authToken }), (err) => {  
     if (err) throw err;
   });
@@ -59,26 +57,6 @@ function getFarms() {
     })
     .catch(err => reject(err))
   });
-}
-
-function getMinerDashBoard() {
-  const baseUrl = 'https://api.ethermine.org';
-  const miner = userData.wallet;
-
-  return new Promise((resolve, reject) => {
-    axios.get(`${baseUrl}/miner/${miner}/dashboard`)
-    .then(response => {
-      const { data: { data }} = response;
-      delete data.settings;
-
-      return resolve(data);
-    })
-    .catch(err => {
-      return reject(err);
-    });
-  
-  });
-    
 }
 
 function mapFarmsData(data) {
@@ -104,6 +82,26 @@ function mapFarmsData(data) {
       powerDraw,
       gpus: stats
     })
+  });
+}
+
+function getMinerDashBoard() {
+  const baseUrl = 'https://api.ethermine.org';
+  const miner = process.env.ETH_WALLET;
+  console.log(miner);
+
+  return new Promise((resolve, reject) => {
+    axios.get(`${baseUrl}/miner/${miner}/dashboard`)
+    .then(response => {
+      const { data: { data }} = response;
+      delete data.settings;
+
+      return resolve(data);
+    })
+    .catch(err => {
+      return reject(err);
+    });
+  
   });
 }
 

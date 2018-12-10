@@ -1,6 +1,7 @@
 .DS_STORE
 /node_modules/
 .vscode
+.env
 .idea
 *.log
 user
