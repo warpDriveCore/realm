@@ -21,6 +21,12 @@ jobs:
           fingerprints:
             - "dd:43:02:18:87:aa:70:be:a6:f6:80:33:68:ca:3b:b3"
       
+      # setup ssh-agent
+      - run: which ssh-agent
+      - run: eval ssh-agent -s
+      - run: mkdir -p ~/.ssh
+      - run: echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
       # prepare remote directories for deployment
       - run: ssh "$DROPLET_CREDENTIALS" "bash -s" < ./tools/deploy.sh
 workflows:
