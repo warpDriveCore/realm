@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import classNames from 'classNames';
+import classNames from 'classNames/index';
 
 import PieChart from '../components/PieChart';
 import ChartInfo from '../components/ChartInfo';
