@@ -16,9 +16,6 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          <<: *cache_keys
-
       # add ssh keys
       - add_ssh_keys:
           fingerprints:
