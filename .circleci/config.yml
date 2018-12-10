@@ -22,7 +22,7 @@ jobs:
             - "dd:43:02:18:87:aa:70:be:a6:f6:80:33:68:ca:3b:b3"
       
       # prepare remote directories for deployment
-      - run: ssh "$DROPLET_CREDENTIALS" "cd $DROPLET_DEPLOY_PATH/tools/deploy.sh"
+      - run: ssh "$DROPLET_CREDENTIALS" "bash -s" < ./tools/deploy.sh
 workflows:
   version: 2
   build-deploy:
