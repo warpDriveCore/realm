@@ -23,6 +23,9 @@ jobs:
 
       # prepare remote directories for deployment
       - run: 
+          name: Scan
+          command: ssh-keyscan SSH_HOST >> ~/.ssh/known_hosts
+      - run: 
           name: Deploy Over SSH
           command: |
             ssh $SSH_USER@$SSH_HOST "bash -s" < ./tools/deploy.sh
