@@ -12,8 +12,9 @@ import axiosMiddleware from 'redux-axios-middleware';
 
 import reducer from './utils/reducer';
 
+const baseUrl = window.location.origin.includes('warp') ? window.location.origin : 'http://localhost:3001';
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: baseUrl,
   responseType: 'json'
 });
 
