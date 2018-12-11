@@ -36,9 +36,9 @@ class Portfolio extends PureComponent {
     const { highLightedCoin, addCoinActive } = this.state;
     const total = {
       symbol: 'Total',
-      valueUsd: coins.reduce((acc, { valueUsd }) => acc + +valueUsd, 0),
+      valueUsd: parseInt(coins.reduce((acc, { valueUsd }) => acc + +valueUsd, 0)),
     };
-    console.log(addCoinActive);
+
     return (
       <section className="ui-block ui-block_blue ui-portfolio">
         <h2 className='ui-portfolio__header'>

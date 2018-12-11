@@ -14,17 +14,12 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - checkout
-
       # add ssh keys
       - add_ssh_keys:
           fingerprints:
             - "28:bc:11:0c:3c:e4:d6:fb:b7:cc:97:9e:80:c0:0f:73"
 
       # prepare remote directories for deployment
-      - run: 
-          name: Scan
-          command: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
       - run: 
           name: Deploy Over SSH
           command: |
@@ -37,5 +32,3 @@ workflows:
           filters:
             branches:
               only: master
-
-
